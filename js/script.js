@@ -9,13 +9,39 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.preloader').style.display = 'none';
     });
 
-    // Custom cursor
-    const cursor = document.querySelector('.cursor');
-    const cursorFollower = document.querySelector('.cursor-follower');
-
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.transform = `translate(${e.clientX - 5}px, ${e.clientY - 5}px)`;
-        cursorFollower.style.transform = `translate(${e.clientX - 15}px, ${e.clientY - 15}px)`;
+    // Initialize particles.js
+    particlesJS("particles-js", {
+        particles: {
+            number: { value: 80, density: { enable: true, value_area: 800 } },
+            color: { value: "#ffffff" },
+            opacity: { value: 0.5, random: false },
+            size: { value: 3, random: true },
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: "#ffffff",
+                opacity: 0.4,
+                width: 1
+            },
+            move: {
+                enable: true,
+                speed: 2,
+                direction: "none",
+                random: false,
+                straight: false,
+                out_mode: "out",
+                bounce: false
+            }
+        },
+        interactivity: {
+            detect_on: "canvas",
+            events: {
+                onhover: { enable: true, mode: "repulse" },
+                onclick: { enable: true, mode: "push" },
+                resize: true
+            }
+        },
+        retina_detect: true
     });
 
     // Aurora effect
@@ -104,27 +130,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
     addFloatingIcons();
 
-    // Skills animation
-    const skills = [
-        { name: 'Web Development', level: 90 },
-        { name: 'Database Management', level: 85 },
-        { name: 'Logo Design', level: 80 },
-        { name: 'Microsoft Office', level: 95 }
-    ];
-
-    const skillsContainer = document.querySelector('.skills-container');
+    // Initialize counters
+    const counters = document.querySelectorAll('.counter');
     
-    skills.forEach(skill => {
-        const skillElement = document.createElement('div');
-        skillElement.className = 'skill-item';
-        skillElement.innerHTML = `
-            <div class="skill-name">${skill.name}</div>
-            <div class="skill-bar">
-                <div class="skill-progress" style="width: ${skill.level}%"></div>
-            </div>
-        `;
-        skillsContainer.appendChild(skillElement);
+    const animateCounter = (counter) => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const count = parseInt(counter.innerText);
+        const increment = target / 200;
+
+        if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(() => animateCounter(counter), 1);
+        } else {
+            counter.innerText = target;
+        }
+    };
+
+    // Intersection Observer for counters
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                counterObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => counterObserver.observe(counter));
+
+    // Skills tooltips
+    const skillItems = document.querySelectorAll('.skill-item');
+    
+    skillItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            const skillName = item.getAttribute('data-skill');
+            document.querySelector(':root').style.setProperty('--skill-color', getSkillColor(skillName));
+        });
+        
+        item.addEventListener('mouseleave', () => {
+            document.querySelector(':root').style.setProperty('--skill-color', 'var(--primary-color)');
+        });
     });
+
+    function getSkillColor(skillName) {
+        const colors = {
+            'PowerPoint': '#D04423',
+            'Excel': '#217346',
+            'Word': '#2B579A',
+            'Web Development': '#61DAFB',
+            'Logo Design': '#FF7F50'
+        };
+        return colors[skillName] || '#4a90e2';
+    }
 
     // Animate skills on scroll
     const animateSkills = () => {
@@ -209,26 +266,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
     showTestimonial(0);
 
-    // Contact form
+    // Contact Form with EmailJS and Toast Notifications
     const contactForm = document.getElementById('contact-form');
-    
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const templateParams = {
-            from_name: document.getElementById('name').value,
-            from_email: document.getElementById('email').value,
-            message: document.getElementById('message').value
-        };
+    const successToast = new bootstrap.Toast(document.getElementById('successToast'));
+    const errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
 
-        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
-            .then(() => {
-                alert('Message sent successfully!');
-                contactForm.reset();
-            })
-            .catch(() => {
-                alert('Failed to send message. Please try again.');
-            });
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+
+        try {
+            const formData = new FormData(contactForm);
+            await emailjs.send(
+                'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+                'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+                {
+                    from_name: formData.get('name'),
+                    reply_to: formData.get('email'),
+                    message: formData.get('message')
+                }
+            );
+
+            successToast.show();
+            contactForm.reset();
+        } catch (error) {
+            console.error('Error:', error);
+            errorToast.show();
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Send Message';
+        }
     });
 
     // Theme toggle
