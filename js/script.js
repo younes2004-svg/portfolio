@@ -7,7 +7,58 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', () => {
         document.body.classList.remove('loading');
         document.querySelector('.preloader').style.display = 'none';
+        initParticles();
     });
+
+    // Initialize particles.js
+    function initParticles() {
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#00ff9d" },
+                shape: { type: "circle" },
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    animation: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    animation: { enable: true, speed: 2, size_min: 0.1, sync: false }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#00ff9d",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                },
+                modes: {
+                    grab: { distance: 140, line_linked: { opacity: 1 } },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+    }
 
     // Custom cursor
     const cursor = document.querySelector('.cursor');
@@ -252,6 +303,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update copyright year
     document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Achievement counters
+    const achievementCards = document.querySelectorAll('.achievement-card');
+    
+    achievementCards.forEach(card => {
+        const countElement = card.querySelector('.achievement-count');
+        const targetCount = parseInt(card.dataset.count);
+        
+        gsap.to(countElement, {
+            innerHTML: targetCount,
+            duration: 2,
+            snap: { innerHTML: 1 },
+            scrollTrigger: {
+                trigger: card,
+                start: 'top 80%',
+                once: true
+            }
+        });
+    });
 
     // Scroll animations with GSAP
     gsap.registerPlugin(ScrollTrigger);

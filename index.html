@@ -33,26 +33,32 @@
         <div class="loader"></div>
     </div>
 
-    <!-- Custom Cursor -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+    <!-- Settings Panel -->
+    <div class="settings-panel">
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" aria-label="Toggle dark/light mode">
+            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.65 0-3 1.35-3 3s1.35 3 3 3 3-1.35 3-3-1.35-3-3-3z"/></svg>
+            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+        </button>
+        <!-- Cursor Toggle -->
+        <button class="cursor-toggle" aria-label="Toggle custom cursor">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.64,21.97C13.14,22.21 12.54,22 12.31,21.5L10.13,16.76L7.62,18.78C7.45,18.92 7.24,19 7,19A1,1 0 0,1 6,18V3A1,1 0 0,1 7.5,2.32L19.5,10.32C20.04,10.69 20.17,11.45 19.79,12C19.69,12.13 19.57,12.25 19.43,12.34L16.6,14.5L19.5,19.5C19.74,20 19.53,20.61 19.03,20.84L13.64,21.97Z"/></svg>
+        </button>
+    </div>
 
-    <!-- Theme Toggle -->
-    <button class="theme-toggle" aria-label="Toggle dark/light mode">
-        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.65 0-3 1.35-3 3s1.35 3 3 3 3-1.35 3-3-1.35-3-3-3z"/></svg>
-        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
-    </button>
+    <!-- Custom Cursor (Disabled by Default) -->
+    <div class="cursor disabled" aria-hidden="true"></div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="aurora-container"></div>
+        <div id="particles-js"></div>
         <div class="hero-content">
-            <h1 class="glitch-text">YOUNES MADANI</h1>
+            <div class="profile-container">
+                <img src="assets/images/profile.jpg" alt="Younes Madani" class="profile-image" loading="lazy">
+            </div>
+            <h1 class="animate-text">YOUNES MADANI</h1>
             <div class="typing-container">
                 <span class="typing"></span>
-            </div>
-            <div class="floating-icons">
-                <!-- Icons will be added dynamically via JS -->
             </div>
         </div>
     </section>
@@ -64,6 +70,23 @@
             <div class="about-content">
                 <div class="about-text">
                     <p>Professional web developer and database specialist with expertise in logo design and Microsoft Office Suite. Passionate about creating elegant solutions and delivering exceptional user experiences.</p>
+                </div>
+                <div class="achievements-grid">
+                    <div class="achievement-card" data-count="43">
+                        <div class="achievement-icon">🛍️</div>
+                        <div class="achievement-count">0</div>
+                        <div class="achievement-label">E-commerce Sites</div>
+                    </div>
+                    <div class="achievement-card" data-count="3">
+                        <div class="achievement-icon">📅</div>
+                        <div class="achievement-count">0</div>
+                        <div class="achievement-label">Booking Systems</div>
+                    </div>
+                    <div class="achievement-card" data-count="2">
+                        <div class="achievement-icon">🤖</div>
+                        <div class="achievement-count">0</div>
+                        <div class="achievement-label">AI Agents</div>
+                    </div>
                 </div>
                 <div class="skills-container">
                     <!-- Skills will be added dynamically via JS -->
