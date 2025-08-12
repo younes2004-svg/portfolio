@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Younes Madani - Web Developer, Logo Designer & Microsoft Office Expert">
+    <meta name="description" content="Younes Madani - Web Developer, Database Specialist, Logo Designer, and Office Suite Expert">
     <meta property="og:title" content="Younes Madani - Professional Portfolio">
-    <meta property="og:description" content="Professional web developer and logo designer with expertise in Microsoft Office tools">
+    <meta property="og:description" content="Discover my work in web development, database management, logo design, and Microsoft Office expertise.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="assets/images/profile.jpg">
-    <title>Younes Madani - Web Developer & Designer</title>
+    <title>Younes Madani - Professional Portfolio</title>
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -16,20 +15,28 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     
-    <!-- CSS -->
+    <!-- Font Awesome & Boxicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <!-- AOS - Animate On Scroll -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    
+    <!-- Bootstrap for Grid & Components -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.min.css">
     
     <!-- Third-party libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body class="loading">
     <!-- Preloader -->
@@ -37,127 +44,273 @@
         <div class="loader"></div>
     </div>
 
-    <!-- Settings Panel -->
-    <div class="settings-panel">
-        <!-- Theme Toggle -->
-        <button class="theme-toggle" aria-label="Toggle dark/light mode">
-            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.65 0-3 1.35-3 3s1.35 3 3 3 3-1.35 3-3-1.35-3-3-3z"/></svg>
-            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
-        </button>
-        <!-- Cursor Toggle -->
-        <button class="cursor-toggle" aria-label="Toggle custom cursor">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.64,21.97C13.14,22.21 12.54,22 12.31,21.5L10.13,16.76L7.62,18.78C7.45,18.92 7.24,19 7,19A1,1 0 0,1 6,18V3A1,1 0 0,1 7.5,2.32L19.5,10.32C20.04,10.69 20.17,11.45 19.79,12C19.69,12.13 19.57,12.25 19.43,12.34L16.6,14.5L19.5,19.5C19.74,20 19.53,20.61 19.03,20.84L13.64,21.97Z"/></svg>
-        </button>
-    </div>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
 
-    <!-- Custom Cursor (Disabled by Default) -->
-    <div class="cursor disabled" aria-hidden="true"></div>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" aria-label="Toggle dark/light mode">
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.65 0-3 1.35-3 3s1.35 3 3 3 3-1.35 3-3-1.35-3-3-3z"/></svg>
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+    </button>
+
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div id="particles-js"></div>
-        <div class="hero-content">
-            <div class="profile-container">
-                <img src="assets/images/profile.jpg" alt="Younes Madani" class="profile-image" loading="lazy">
-            </div>
-            <h1 class="animate-text">YOUNES MADANI</h1>
-            <div class="typing-container">
-                <span class="typing"></span>
+    <section class="hero min-vh-100 d-flex align-items-center" id="home" data-aos="fade-up">
+        <div class="aurora-container"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-center text-lg-start">
+                    <h1 class="display-3 fw-bold mb-3" data-aos="fade-right" data-aos-delay="100">YOUNES MADANI</h1>
+                    <div class="typing-container mb-4" data-aos="fade-right" data-aos-delay="200">
+                        <span class="typing lead"></span>
+                    </div>
+                    <div class="social-links d-flex gap-3 justify-content-center justify-content-lg-start" data-aos="fade-up" data-aos-delay="300">
+                        <a href="https://www.instagram.com/you_nes_md?igsh=MWV3Y2tmbDhudTAxMw==" target="_blank" rel="noopener noreferrer" class="instagram-link" aria-label="Instagram">
+                            <i class="fab fa-instagram fa-2x"></i>
+                        </a>
+                        <a href="https://www.facebook.com/younes.madani.94" target="_blank" rel="noopener noreferrer" class="facebook-link" aria-label="Facebook">
+                            <i class="fab fa-facebook fa-2x"></i>
+                        </a>
+                        <a href="tel:0778632370" class="phone-link" aria-label="Phone">
+                            <i class="fas fa-phone fa-2x"></i>
+                        </a>
+                        <a href="mailto:younes.madani@example.com" class="email-link" aria-label="Email">
+                            <i class="fas fa-envelope fa-2x"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0 text-center" data-aos="fade-left" data-aos-delay="200">
+                    <div class="profile-container">
+                        <img src="assets/images/profile.jpg" alt="Younes Madani" class="profile-image img-fluid">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="about" id="about">
+    <section class="about py-5" id="about">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Professional web developer and database specialist with expertise in logo design and Microsoft Office Suite. Passionate about creating elegant solutions and delivering exceptional user experiences.</p>
-                </div>
-                <div class="achievements-grid">
-                    <div class="achievement-card" data-count="43">
-                        <div class="achievement-icon">🛍️</div>
-                        <div class="achievement-count">0</div>
-                        <div class="achievement-label">E-commerce Sites</div>
-                    </div>
-                    <div class="achievement-card" data-count="3">
-                        <div class="achievement-icon">📅</div>
-                        <div class="achievement-count">0</div>
-                        <div class="achievement-label">Booking Systems</div>
-                    </div>
-                    <div class="achievement-card" data-count="2">
-                        <div class="achievement-icon">🤖</div>
-                        <div class="achievement-count">0</div>
-                        <div class="achievement-label">AI Agents</div>
+            <h2 class="section-title text-center mb-5" data-aos="fade-up">About Me</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="about-text">
+                        <p class="lead">Professional web developer and database specialist with expertise in logo design and Microsoft Office Suite. Passionate about creating elegant solutions and delivering exceptional user experiences.</p>
                     </div>
                 </div>
-                <div class="skills-container">
-                    <!-- Skills will be added dynamically via JS -->
+                <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
+                    <div class="skills-grid">
+                        <div class="skill-item" data-skill="PowerPoint">
+                            <i class="fas fa-file-powerpoint"></i>
+                            <div class="skill-tooltip">Professional & engaging presentations</div>
+                        </div>
+                        <div class="skill-item" data-skill="Excel">
+                            <i class="fas fa-file-excel"></i>
+                            <div class="skill-tooltip">Data analysis, automation, advanced formulas</div>
+                        </div>
+                        <div class="skill-item" data-skill="Word">
+                            <i class="fas fa-file-word"></i>
+                            <div class="skill-tooltip">Writing articles, formatting reports, creating scientific research documents</div>
+                        </div>
+                        <div class="skill-item" data-skill="Web Development">
+                            <i class="fas fa-code"></i>
+                            <div class="skill-tooltip">Full-stack responsive websites</div>
+                        </div>
+                        <div class="skill-item" data-skill="Logo Design">
+                            <i class="fas fa-palette"></i>
+                            <div class="skill-tooltip">Brand identity & logo design</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="achievements py-5 bg-light" id="achievements">
+        <div class="container">
+            <h2 class="section-title text-center mb-5" data-aos="fade-up">Achievements</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3" data-aos="fade-up">
+                    <div class="achievement-card text-center">
+                        <i class="fas fa-robot mb-3"></i>
+                        <h3 class="counter" data-target="1">0</h3>
+                        <p>MD AI Agent</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="achievement-card text-center">
+                        <i class="fas fa-table mb-3"></i>
+                        <h3 class="counter" data-target="1">0</h3>
+                        <p>TR Excel Agent</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="achievement-card text-center">
+                        <i class="fas fa-shopping-cart mb-3"></i>
+                        <h3 class="counter" data-target="43">0</h3>
+                        <p>E-commerce Websites</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="achievement-card text-center">
+                        <i class="fas fa-calendar-check mb-3"></i>
+                        <h3 class="counter" data-target="3">0</h3>
+                        <p>Booking Information Systems</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Portfolio Section -->
-    <section class="portfolio" id="portfolio">
+    <section class="portfolio py-5" id="portfolio">
         <div class="container">
-            <h2 class="section-title">My Work</h2>
-            <div class="portfolio-grid">
-                <!-- Portfolio items will be added dynamically via JS -->
+            <h2 class="section-title text-center mb-5" data-aos="fade-up">My Work</h2>
+            <div class="row g-4">
+                <!-- Portfolio items with hover effects -->
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                    <div class="portfolio-item">
+                        <img src="assets/images/work1.jpg" alt="Project 1" class="img-fluid">
+                        <div class="portfolio-overlay">
+                            <h3>E-commerce Platform</h3>
+                            <p>Full-stack development</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more portfolio items as needed -->
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
+    <section class="testimonials py-5 bg-light" id="testimonials">
         <div class="container">
-            <h2 class="section-title">What People Say</h2>
-            <div class="testimonials-carousel">
-                <!-- Testimonials will be added dynamically via JS -->
+            <h2 class="section-title text-center mb-5" data-aos="fade-up">What People Say</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" data-aos="fade-up">
+                                <div class="testimonial-card text-center">
+                                    <img src="assets/images/testimonial1.jpg" alt="TAHARAOUI RANIM" class="rounded-circle mb-3">
+                                    <h4>TAHARAOUI RANIM</h4>
+                                    <p class="lead">"He is amazing and creative in everything! ❤️"</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item" data-aos="fade-up">
+                                <div class="testimonial-card text-center">
+                                    <img src="assets/images/testimonial2.jpg" alt="BOURALEM WALID" class="rounded-circle mb-3">
+                                    <h4>BOURALEM WALID</h4>
+                                    <p class="lead">"Very professional work; exceeded expectations."</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <section class="contact py-5" id="contact">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <form id="contact-form" class="contact-form">
-                <div class="form-group">
-                    <input type="text" id="name" name="name" required>
-                    <label for="name">Name</label>
+            <h2 class="section-title text-center mb-5" data-aos="fade-up">Get In Touch</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form id="contact-form" class="contact-form" data-aos="fade-up">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                                    <label for="name">Your Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+                                    <label for="email">Your Email</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="message" name="message" placeholder="Your Message" style="height: 150px" required></textarea>
+                                    <label for="message">Your Message</label>
+                                </div>
+                            </div>
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-primary btn-lg px-5">
+                                    <i class="fas fa-paper-plane me-2"></i>Send Message
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <input type="email" id="email" name="email" required>
-                    <label for="email">Email</label>
-                </div>
-                <div class="form-group">
-                    <textarea id="message" name="message" required></textarea>
-                    <label for="message">Message</label>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-            <div class="social-links">
-                <a href="https://www.instagram.com/you_nes_md?igsh=MWV3Y2tmbDhudTAxMw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                    <svg class="social-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                </a>
-                <a href="https://www.facebook.com/younes.madani.94" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                    <svg class="social-icon" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
-                </a>
-                <a href="tel:0778632370" aria-label="Phone">
-                    <svg class="social-icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer py-4 bg-dark text-light">
         <div class="container">
-            <p>&copy; <span id="current-year"></span> Younes Madani. All rights reserved.</p>
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; <span id="current-year"></span> Younes Madani. All rights reserved.</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="social-links d-flex gap-3 justify-content-center justify-content-md-end mt-3 mt-md-0">
+                        <a href="https://www.instagram.com/you_nes_md?igsh=MWV3Y2tmbDhudTAxMw==" target="_blank" rel="noopener noreferrer" class="instagram-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/younes.madani.94" target="_blank" rel="noopener noreferrer" class="facebook-link" aria-label="Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="tel:0778632370" class="phone-link" aria-label="Phone">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                        <a href="mailto:younes.madani@example.com" class="email-link" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="successToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-success text-white">
+                <i class="fas fa-check-circle me-2"></i>
+                <strong class="me-auto">Success</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Your message has been sent successfully!
+            </div>
+        </div>
+        <div id="errorToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-danger text-white">
+                <i class="fas fa-exclamation-circle me-2"></i>
+                <strong class="me-auto">Error</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Oops! Something went wrong. Please try again.
+            </div>
+        </div>
+    </div>
 
     <!-- Portfolio Modal Template -->
     <div class="modal" id="portfolio-modal">
@@ -169,7 +322,21 @@
         </div>
     </div>
 
-    <!-- JavaScript -->
+    <!-- Bootstrap & Other Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
+    <!-- Initialize AOS -->
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+    </script>
+    
+    <!-- Custom JavaScript -->
     <script src="js/script.js"></script>
     <script src="js/script.min.js"></script>
 </body>
