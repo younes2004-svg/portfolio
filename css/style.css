@@ -224,18 +224,184 @@ section {
     color: var(--primary-color);
 }
 
-/* About Section */
-.about-content {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
+/* Skills Section */
+.skills-section {
+    padding: 6rem 0;
+    background: linear-gradient(to bottom, var(--bg-color), #001a0d);
 }
 
-.about-text {
-    font-size: 1.1rem;
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.skill-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 2rem;
     text-align: center;
+    position: relative;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+}
+
+.skill-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.skill-icon {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.skill-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.skill-tooltip {
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(0, 0, 0, 0.9);
+    padding: 1rem;
+    border-radius: 8px;
+    width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-normal);
+    z-index: 100;
+}
+
+.skill-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.9);
+}
+
+.skill-card:hover .skill-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Achievements Section */
+.achievements-section {
+    padding: 6rem 0;
+    background: linear-gradient(to bottom, #001a0d, var(--bg-color));
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.achievement-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.achievement-icon {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    transition: transform var(--transition-normal);
+}
+
+.achievement-card:hover .achievement-icon {
+    transform: rotateY(360deg);
+}
+
+.achievement-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent-color);
+}
+
+.achievement-card p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    padding: 6rem 0;
+    background: var(--bg-color);
+    overflow: hidden;
+}
+
+.testimonials-carousel {
+    position: relative;
     max-width: 800px;
     margin: 0 auto;
+    height: 300px;
+}
+
+.testimonial-card {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    padding: 2rem;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all var(--transition-normal);
+}
+
+.testimonial-card.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.testimonial-emoji {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.testimonial-text {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.testimonial-author {
+    font-size: 1.1rem;
+    color: var(--accent-color);
+}
+
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.carousel-dot.active {
+    background: var(--accent-color);
 }
 
 .achievements-grid {
