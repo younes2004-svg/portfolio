@@ -1,17 +1,13 @@
-/* Variables */
 :root {
     /* Colors */
-    --primary-color: #00ff9d;
-    --secondary-color: #004d2c;
-    --bg-dark: #0a0a0a;
-    --bg-light: #ffffff;
-    --text-dark: #121212;
-    --text-light: #ffffff;
-    --aurora-color-1: rgba(0, 255, 157, 0.2);
-    --aurora-color-2: rgba(0, 77, 44, 0.2);
+    --bg-color: #0a0a0a;
+    --text-color: #ffffff;
+    --accent-color: #00ff9d;
+    --instagram-gradient: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
     
     /* Typography */
-    --font-primary: 'Poppins', sans-serif;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Poppins', sans-serif;
     
     /* Transitions */
     --transition-fast: 0.3s ease;
